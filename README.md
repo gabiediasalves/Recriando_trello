@@ -1,24 +1,20 @@
-# 4_recriando_trello
+# Recreate basic Trello using drag n' drop
 
-## Project setup
+![image](https://user-images.githubusercontent.com/95694730/172713957-543a623d-508f-48a7-a90d-2611190f47b2.png)
+
+# Steps to use it
+Install
 ```
 yarn install
 ```
-
-### Compiles and hot-reloads for development
+Start
 ```
 yarn serve
 ```
-
-### Compiles and minifies for production
+Build
 ```
 yarn build
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<hr>
+Project inspired by: https://www.youtube.com/watch?v=YmJzRpMFdDY&t=2s

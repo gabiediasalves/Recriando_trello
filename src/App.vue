@@ -3,53 +3,66 @@
    <headerView/>
    <div class="board">
   <div class="lane">
-      <h2 class="lane-title">Backlog</h2>
+    <h2 class="lane-title">Backlog</h2>
       <Container group-name="trello" 
       @drag-start="handleDragStart('backlog', $event)" 
       @drop="handleDrop('backlog', $event)"
       :get-child-payload="getChildPayload"
       :drop-placeholder="{className: 'placeholder'}">
         <Draggable v-for="card in cards.backlog" :key="card.id">
-      <cardView >{{card.text}}</cardView>
-       </Draggable>
+          <cardView >{{card.text}}</cardView>
+        </Draggable>
       </Container>
  </div>
   <div class="lane">
-      <h2 class="lane-title">Desenvolvimento</h2>
+    <h2 class="lane-title">Desenvolvimento</h2>
        <Container group-name="trello" 
        @drag-start="handleDragStart('dev', $event)" 
        @drop="handleDrop('dev', $event)"
        :get-child-payload="getChildPayload"
        :drop-placeholder="{className: 'placeholder'}">
         <Draggable v-for="card in cards.dev" :key="card.id">
-      <cardView >{{card.text}}</cardView>
-       </Draggable>
+          <cardView >{{card.text}}</cardView>
+        </Draggable>
       </Container>
   </div>
   <div class="lane">
-      <h2 class="lane-title">Teste</h2>
+    <h2 class="lane-title">Teste</h2>
       <Container group-name="trello" 
       @drag-start="handleDragStart('testes', $event)" 
       @drop="handleDrop('testes', $event)"
       :get-child-payload="getChildPayload"
       :drop-placeholder="{className: 'placeholder'}">
         <Draggable v-for="card in cards.testes" :key="card.id">
-      <cardView >{{card.text}}</cardView>
-       </Draggable>
+          <cardView >{{card.text}}</cardView>
+        </Draggable>
       </Container>
   </div>
   <div class="lane">
-      <h2 class="lane-title">Concluido</h2>
-       <Container group-name="trello" 
+    <h2 class="lane-title">Concluido</h2>
+     <Container group-name="trello" 
        @drag-start="handleDragStart('fechados', $event)" 
        @drop="handleDrop('fechados', $event)"
        :get-child-payload="getChildPayload"
        :drop-placeholder="{className: 'placeholder'}">
         <Draggable v-for="card in cards.fechados" :key="card.id">
-      <cardView >{{card.text}}</cardView>
-       </Draggable>
+          <cardView >{{card.text}}</cardView>
+        </Draggable>
       </Container>
   </div>
+  <div class="lane" v-for="title in ladeTitle" :key="title.id">
+    <h2 class="lane-title">{{title}}</h2>
+     <Container group-name="trello" 
+       @drag-start="handleDragStart(title, $event)" 
+       @drop="handleDrop(title, $event)"
+       :get-child-payload="getChildPayload"
+       :drop-placeholder="{className: 'placeholder'}">
+        <Draggable v-for="card in cards.dev" :key="card.id"><!--precisa arrumar esse cards.dev-->
+          <cardView >{{card.text}}</cardView>
+        </Draggable>
+      </Container>
+  </div>
+
    </div>
   </div>
 </template>
@@ -78,7 +91,11 @@ export default {
       lane: '',
       index: -1,
       cardData: {}
-    }
+    },
+    ladeTitle: [
+      "Backlog",
+      "Dev"
+    ]
   }),
   methods:{
     handleDragStart(lane, dragResult){
@@ -92,7 +109,6 @@ export default {
           }
         }
       }
-
     },
     handleDrop(lane, dropResult){
       const {removedIndex, addedIndex} = dropResult
@@ -121,7 +137,6 @@ export default {
   margin: 1.2rem 0.8rem;
   align-items: flex-start;
 }
-
 .lane{
   background: var(--color-gray);
   width: 23rem;
@@ -129,9 +144,7 @@ export default {
   box-shadow: 0 .1rem .2rem 0 rgba(33,33,33, 0.1rem); 
   margin: 0 0.8rem;
   padding : 0 0.7rem;
-
 }
-
 .lane-title{
   margin-bottom: 0.6rem;
   padding: 0.8rem 0.5rem;
